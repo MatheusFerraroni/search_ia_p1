@@ -1,9 +1,7 @@
-# Search IA P1
+# Solution Search Project
 [University of Campinas](https://www.unicamp.br/unicamp/)
 
 [Introduction to Artificial Intelligence](https://www.dac.unicamp.br/portal/caderno-de-horarios/2020/1/S/P/IC/MO416)
-
-Solution search project (P1).
 
 ## Group
 
