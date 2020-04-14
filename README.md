@@ -34,4 +34,4 @@
 
 It is worth to point out that you may run "python main.py --help" to visualize all the possible flags and parameters.
 
-For instance, "python main.py --maps=./maps/map1.txt,./maps/map2.txt" will execute both files.
+For instance, "python main.py --bfs --maps=./maps/map1.txt,./maps/map2.txt" will execute both files with bfs.
