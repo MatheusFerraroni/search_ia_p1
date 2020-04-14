@@ -1,7 +1,7 @@
 from core.work import Problem, Node
 
 
-def dfs(problem):
+def DepthFirst(problem):
 
     frontier = [Node(problem.initial)]
 
