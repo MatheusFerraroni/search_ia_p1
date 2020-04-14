@@ -1,16 +1,13 @@
-from collections import deque
-import sys
-
 from core.work import Problem, Node
 
 
-def bfs(problem):
+def dfs(problem):
 
-    frontier = deque([Node(problem.initial)])
+    frontier = [Node(problem.initial)]
 
     while frontier:
-        
-        node = frontier.popleft()
+
+        node = frontier.pop()
 
         if problem.goal_test(node.state):
             return node

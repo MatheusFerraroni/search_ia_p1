@@ -1,9 +1,12 @@
 import sys
+
 sys.path.insert(1, '../aima-python/')
 import search
 from utils import *
 
-class ProblemTrab(search.Problem):
+
+class Problem(search.Problem):
+
     def __init__(self, initial):
         self.initial = initial
         self.goal = initial.goal
@@ -31,7 +34,7 @@ class ProblemTrab(search.Problem):
     #     raise NotImplementedError
 
 
-class NodeTrab(search.Node):
+class Node(search.Node):
 
     """A node in a search tree. Contains a pointer to the parent (the node
     that this is a successor of) and to the actual state for this node. Note
@@ -53,7 +56,7 @@ class NodeTrab(search.Node):
             self.depth = parent.depth + 1
 
     def __repr__(self):
-        return "<NodeTrab {}>".format(self.state)
+        return "<Node {}>".format(self.state)
 
     def __lt__(self, node):
         return self.state < node.state
@@ -67,11 +70,11 @@ class NodeTrab(search.Node):
     def child_node(self, problem, action):
         """[Figure 3.10]"""
         next_state = problem.result(self.state, action)
-        next_node = NodeTrab(next_state, self, action,
+        next_node = Node(next_state, self, action,
                     problem.path_cost(self.path_cost, self.state,
                                       action, next_state))
         return next_node
-    
+
     def solution(self):
         """Return the sequence of actions to go from the root to this node."""
         return [node.action for node in self.path()[1:]]
@@ -94,4 +97,3 @@ class NodeTrab(search.Node):
 
     def __hash__(self):
         return hash(self.state)
-

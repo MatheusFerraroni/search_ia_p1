@@ -1,10 +1,9 @@
 import sys
 import time
-sys.path.insert(1, './core/')
-import Mapa
-import Trabalho
-sys.path.insert(1, './strategies/')
-from bfs import *
+
+from core.map import Map
+from core.work import Problem, Node
+from strategies.bfs import bfs
 
 
 def main(map_text):
@@ -23,11 +22,11 @@ $/4 = PASSED\n\n""")
 4/C = UP\n\n""")
 
     print("Criando mapa")
-    initial_state = Mapa.Mapa(map_text)
+    initial_state = Map(map_text)
     print("Criando mapa OK.")
 
     print("Criando problema")
-    problema = Trabalho.ProblemTrab(initial_state)
+    problema = Problem(initial_state)
     print("Criando problema OK")
 
 
@@ -50,6 +49,7 @@ $/4 = PASSED\n\n""")
 
 
 if __name__ == '__main__':
+
     try:
         map_file = sys.argv[1]
         f = open(map_file,"r")
@@ -58,6 +58,5 @@ if __name__ == '__main__':
     except Exception as e:
         print("Error loading the map file: "+str(e))
         sys.exit()
-
 
     main(map_file)
