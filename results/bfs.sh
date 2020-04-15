@@ -6,5 +6,5 @@ do
 	do
 		python ../main.py --bfs --map="../maps/map$n.txt" | grep -e Time -e Node | sed 's/^......//' >> bfs_map$n.out
 	done 
-	python bfs.py --file="./bfs_map$n.out"
+	python compute.py --file="./bfs_map$n.out"
 done
