@@ -29,9 +29,13 @@
 1. Clone https://github.com/aimacode/aima-python
 2. cd aima-python
 3. pip install -r requirements.txt
-4. Edit line 2 in the file "core/work.py" to point to aima-python folder
-5. run "python main.py --(strategy flag)" to execute
+4. cd ../search_ia_p1/
+5. Edit line 2 in the file "core/work.py" to point to aima-python folder
+6. run "python main.py --(strategy flag)" to execute
 
 It is worth to point out that you may run "python main.py --help" to visualize all the possible flags and parameters.
 
+
 For instance, "python main.py --bfs --maps=./maps/map1.txt,./maps/map2.txt" will execute both files with bfs.
+
+To see the state after aplying each action add the tag "--print"

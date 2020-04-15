@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(1, '../aima-python/')
+sys.path.insert(1, '../../aima-python/')
 import search
 from utils import *
 
@@ -8,6 +8,7 @@ from utils import *
 class Problem(search.Problem):
 
     def __init__(self, initial):
+        self.total_nodes = 0
         self.initial = initial
         self.goal = initial.goal
 
@@ -63,6 +64,7 @@ class Node(search.Node):
 
     def expand(self, problem):
         act1, act2 = problem.actions(self.state)
+        problem.total_nodes += len(act1)
         """List the nodes reachable in one step from this node."""
         return [self.child_node(problem, action)
                 for action in act2]

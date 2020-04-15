@@ -30,7 +30,7 @@ def read_maps(args):
 
 def execute(strategy, map_text, args):
 
-    print("""Legenda de acoes:
+    print("""Action Legend:
             1/E = LEFT
             2/D = RIGHT
             3/B = DOWN
@@ -48,12 +48,13 @@ def execute(strategy, map_text, args):
     ini = time.time()
     res = strategy(problem)
     tempo = time.time()-ini
-    print("Executando {0} OK. Tempo gasto: {1} Segundos".format(str(tempo), strategy.__name__))
-
-    print("Acoes tomadas: ", res.solution())
+    print("Executando {0} OK".format(strategy.__name__))
+    print("Time: {0}".format(str(tempo)))
+    print("Node: {0}".format(str(problem.total_nodes)))
+    print("Actions: ", res.solution())
 
     if args.print:
-        print("""\nLegenda do mapa:
+        print("""\nMap Legend:
                 #/0 = BLOCKED
                  /1 = CLEAR
                 S/2 = START
