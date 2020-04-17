@@ -47,10 +47,13 @@ def execute(strategy, map_text, args):
     print("Executando {0}".format(strategy.__name__))
     ini = time.time()
     res = strategy(problem)
+
     tempo = time.time()-ini
     print("Executando {0} OK".format(strategy.__name__))
     print("Time: {0}".format(str(tempo)))
     print("Node: {0}".format(str(problem.total_nodes)))
+    print("Pont: {0}".format(str(res.state.getPoints())))
+    print("Left: {0}".format(str(res.state.getPointsLeft())))
     print("Actions: ", res.solution())
 
     if args.print:
@@ -59,7 +62,8 @@ def execute(strategy, map_text, args):
                  /1 = CLEAR
                 S/2 = START
                 G/3 = GOAL
-                $/4 = PASSED\n\n""")
+                $/4 = PASSED
+                P/  = POINT\n\n""")
 
         print("START")
         initial_state.printVisual()

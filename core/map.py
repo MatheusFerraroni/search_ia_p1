@@ -14,6 +14,8 @@ class Map:
         self.start = None
         self.goal = None
         self.pos = None
+        self.points_pos = []
+        self.points = 0
 
         if map_text!=None:
             self.validateMap(map_text)
@@ -40,17 +42,22 @@ class Map:
                     self.map[i].append(0)
                 elif c == " ":
                     self.map[i].append(1)
-                elif c == "S" or c == "s":
+                elif c.upper() == "S":
                     if self.start!=None:
                         raise Exception("Only one Start is allowed.")
                     self.map[i].append(2)
                     self.start = [j,i]
                     self.pos = [j,i]
-                elif c == "G" or c == "g":
+                elif c.upper() == "G":
                     if self.goal!=None:
                         raise Exception("Only one Goal is allowed.")
                     self.map[i].append(3)
                     self.goal = [j,i]
+                elif c.upper() == "P":
+                    self.map[i].append(1)
+                    self.points_pos.append([j,i])
+                else:
+                    raise Exception("Invalid map char: "+c)
                 j += 1
             i += 1
 
@@ -85,6 +92,14 @@ class Map:
                 print(self.map[i][j],end="")
             print("")
 
+        print(self.points_pos)
+
+    def getPoints(self):
+        return self.points
+
+    def getPointsLeft(self):
+        return self.points_pos
+
 
     def getActions(self):
         ret1 = []
@@ -109,12 +124,27 @@ class Map:
             ret1.append("B")
             ret2.append(3)
 
+
         val = self.map[self.pos[1]-1][self.pos[0]]
         if val!=0 and val!=4:
             ret1.append("C")
             ret2.append(4)
 
         return ret1, ret2
+
+    def collectPoint(self, i, j):
+        # if (i==11 or j==11) and (i==1 or j==1):
+            # print(i,j, self.points_pos, "#",[a for a in self.points_pos if not(a[0]==j and a[1]==i)])
+            # self.printVisual()
+            # sys
+
+        ini = len(self.points_pos)
+        self.points_pos = [a for a in self.points_pos if not(a[0]==j and a[1]==i)]
+        if len(self.points_pos)!=ini:
+            self.points += 1
+        # print(i,j, self.points_pos, [a for a in self.points_pos if not(a[0]==j and a[1]==i)])
+        # sys.exit()
+
 
     def act(self, action):
 
@@ -128,6 +158,7 @@ class Map:
                 return False
             self.map[self.pos[1]][self.pos[0]] = 4 # mark as passed
             self.pos = [self.pos[0]-1,self.pos[1]] # update position
+            self.collectPoint(self.pos[1],self.pos[0])
             return True
         elif action==2 or action=="D": #moving right
             val = self.map[self.pos[1]][self.pos[0]+1]
@@ -135,6 +166,7 @@ class Map:
                 return False
             self.map[self.pos[1]][self.pos[0]] = 4
             self.pos = [self.pos[0]+1,self.pos[1]]
+            self.collectPoint(self.pos[1],self.pos[0])
             return True
         elif action==3 or action=="B": #moving down
             val = self.map[self.pos[1]+1][self.pos[0]]
@@ -142,6 +174,7 @@ class Map:
                 return False
             self.map[self.pos[1]][self.pos[0]] = 4
             self.pos = [self.pos[0],self.pos[1]+1]
+            self.collectPoint(self.pos[1],self.pos[0])
             return True
         elif action==4 or action=="C": #moving up
             val = self.map[self.pos[1]-1][self.pos[0]]
@@ -149,6 +182,7 @@ class Map:
                 return False
             self.map[self.pos[1]][self.pos[0]] = 4
             self.pos = [self.pos[0],self.pos[1]-1]
+            self.collectPoint(self.pos[1],self.pos[0])
             return True
 
         raise Exception("Action unknown")
@@ -167,10 +201,15 @@ class Map:
         ret.start = [self.start[0],self.start[1]]
         ret.goal = [self.goal[0],self.goal[1]]
         ret.pos = [self.pos[0],self.pos[1]]
+        ret.points = self.points
+        ret.points_pos = []
+        for p in self.points_pos:
+            ret.points_pos.append([p[0],p[1]])
 
         return ret
 
     def sim(self, action): # return a Mapa object with the action applied
         ret = self.copy()
         ret.act(action)
+
         return ret

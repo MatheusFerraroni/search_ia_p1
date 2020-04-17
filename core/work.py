@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(1, '../../aima-python/')
+sys.path.insert(1, '../aima-python/')
 import search
 from utils import *
 
