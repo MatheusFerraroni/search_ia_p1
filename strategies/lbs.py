@@ -1,3 +1,5 @@
+from core.work import Problem, Node
+
 def k_states_local_beam_search(problem, k):
     """
     From the initial node, Select randomly k states,
