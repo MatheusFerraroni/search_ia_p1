@@ -3,6 +3,7 @@ import scipy.stats
 import argparse
 import json
 
+
 def mean_confidence_interval(data, confidence=0.95):
     a = 1.0 * np.array(data)
     n = len(a)
@@ -12,24 +13,23 @@ def mean_confidence_interval(data, confidence=0.95):
 
 
 def main(fi):
+
+    # Read file
     f = open(fi,"r")
     infos = f.read()
     f.close()
 
-
-
+    # Divide into distinct metrics
     infos = infos.split("\n")
     nodes = []
     times = []
+
     for i in range(len(infos)-1):
-        
+
         if i%2==1:
             nodes.append(int(infos[i]))
         else:
             times.append(float(infos[i]))
-
-
-
 
     new = {
         "times":{
@@ -53,11 +53,11 @@ def main(fi):
     f = open(fi,"w")
     f.write(json.dumps(new))
     f.close()
+
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Execution parameters')
-
     parser.add_argument('--file',  type=str, help='File path')
     args = parser.parse_args()
-
     main(args.file)

@@ -11,7 +11,6 @@ class Problem(search.Problem):
         self.initial = initial
         self.goal = initial.goal
 
-
     def actions(self, state):
         return state.getActions()
 
