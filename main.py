@@ -7,6 +7,7 @@ from core.work import Problem, Node
 from strategies.bfs import BreadthFirst
 from strategies.dfs import DepthFirst
 from strategies.hill import hill_climbing
+from strategies.best import recursive_best_first_search
 
 
 def read_maps(args):
@@ -96,8 +97,11 @@ def main(args):
             if args.hill:
                 execute(hill_climbing, map, args)
 
+            if args.best:
+                execute(recursive_best_first_search, map, args)
+
             if args.all:
-                for strategy in [BreadthFirst, DepthFirst, hill_climbing]:
+                for strategy in [BreadthFirst, DepthFirst, hill_climbing, recursive_best_first_search]:
                     execute(strategy, map, args)
 
 
@@ -112,7 +116,8 @@ if __name__ == '__main__':
     ####################################
     parser.add_argument('--bfs', help='Breadth-first search', action='store_true')
     parser.add_argument('--dfs', help='Depth-first search', action='store_true')
-    parser.add_argument('--hill', help='Depth-first search', action='store_true')
+    parser.add_argument('--hill', help='Hill search', action='store_true')
+    parser.add_argument('--best', help='Greedy Best First Search search', action='store_true')
     parser.add_argument('--all', help='All search strategies', action='store_true')
 
     parser.add_argument('--print', help='Put it if want to print result', action='store_true')

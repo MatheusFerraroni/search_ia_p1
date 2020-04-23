@@ -11,6 +11,7 @@ class Problem(search.Problem):
         self.initial = initial
         self.goal = initial.goal
 
+
     def actions(self, state):
         return state.getActions()
 
@@ -30,6 +31,9 @@ class Problem(search.Problem):
 
     def value(self, state):
         return state.getDistance()
+
+    def h(self, node):
+        return node.state.getDistance()
 
 
 class Node(search.Node):
