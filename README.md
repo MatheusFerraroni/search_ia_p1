@@ -43,4 +43,4 @@ To see the state after aplying each action add the tag "--print"
 
 ## Open Jupyter Notebook on Google Colab
 
-https://colab.research.google.com/github/MYUSERNAME/MYREPOSITORY/blob/MYBRANCH/PATH/TO/MYNOTEBOOK.ipynb
+https://colab.research.google.com/github/lucaslzl/search_ia_p1/blob/master/Pac_man_Project.ipynb
