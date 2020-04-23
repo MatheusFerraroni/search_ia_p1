@@ -39,3 +39,8 @@ It is worth to point out that you may run "python main.py --help" to visualize a
 For instance, "python main.py --bfs --maps=./maps/map1.txt,./maps/map2.txt" will execute both files with bfs.
 
 To see the state after aplying each action add the tag "--print"
+
+
+## Open Jupyter Notebook on Google Colab
+
+https://colab.research.google.com/github/MYUSERNAME/MYREPOSITORY/blob/MYBRANCH/PATH/TO/MYNOTEBOOK.ipynb
