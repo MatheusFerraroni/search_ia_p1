@@ -1,3 +1,5 @@
+from scipy.spatial import distance
+
 """
 
 #/0 = BLOCKED
@@ -19,6 +21,7 @@ class Map:
 
         if map_text!=None:
             self.validateMap(map_text)
+
 
 
     def validateMap(self, m):
@@ -213,3 +216,7 @@ class Map:
         ret.act(action)
 
         return ret
+
+    def getDistance(self):
+        v = distance.euclidean(self.pos, self.goal)
+        return v

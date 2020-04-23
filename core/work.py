@@ -4,7 +4,6 @@ sys.path.insert(1, '../aima-python/')
 import search
 from utils import *
 
-
 class Problem(search.Problem):
 
     def __init__(self, initial):
@@ -29,10 +28,8 @@ class Problem(search.Problem):
         and action. The default method costs 1 for every step in the path."""
         return c + 1
 
-    # def value(self, state):
-    #     """For optimization problems, each state has a value. Hill Climbing
-    #     and related algorithms try to maximize this value."""
-    #     raise NotImplementedError
+    def value(self, state):
+        return state.getDistance()
 
 
 class Node(search.Node):
@@ -61,6 +58,7 @@ class Node(search.Node):
 
     def __lt__(self, node):
         return self.state < node.state
+
 
     def expand(self, problem):
         act1, act2 = problem.actions(self.state)

@@ -6,6 +6,7 @@ from core.map import Map
 from core.work import Problem, Node
 from strategies.bfs import BreadthFirst
 from strategies.dfs import DepthFirst
+from strategies.hill import hill_climbing
 
 
 def read_maps(args):
@@ -92,8 +93,11 @@ def main(args):
             if args.dfs:
                 execute(DepthFirst, map, args)
 
+            if args.hill:
+                execute(hill_climbing, map, args)
+
             if args.all:
-                for strategy in [BreadthFirst, DepthFirst]:
+                for strategy in [BreadthFirst, DepthFirst, hill_climbing]:
                     execute(strategy, map, args)
 
 
@@ -108,6 +112,7 @@ if __name__ == '__main__':
     ####################################
     parser.add_argument('--bfs', help='Breadth-first search', action='store_true')
     parser.add_argument('--dfs', help='Depth-first search', action='store_true')
+    parser.add_argument('--hill', help='Depth-first search', action='store_true')
     parser.add_argument('--all', help='All search strategies', action='store_true')
 
     parser.add_argument('--print', help='Put it if want to print result', action='store_true')
