@@ -34,6 +34,9 @@ class Problem(search.Problem):
     def h(self, node):
         return node.state.getDistance()
 
+    def h2(self, node):
+        return node.state.getDistancePoints()
+
 
 class Node(search.Node):
 

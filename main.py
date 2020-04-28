@@ -8,6 +8,11 @@ from strategies.bfs import BreadthFirst
 from strategies.dfs import DepthFirst
 from strategies.hill import hill_climbing
 from strategies.best import recursive_best_first_search
+from strategies.bfgs import uniform_cost_search
+from strategies.greedy import Greedy
+
+
+
 
 
 def read_maps(args):
@@ -100,8 +105,14 @@ def main(args):
             if args.best:
                 execute(recursive_best_first_search, map, args)
 
+            if args.bfgs:
+                execute(uniform_cost_search, map, args)
+
+            if args.greedy:
+                execute(Greedy, map, args)
+
             if args.all:
-                for strategy in [BreadthFirst, DepthFirst, hill_climbing, recursive_best_first_search]:
+                for strategy in [BreadthFirst, DepthFirst, hill_climbing, recursive_best_first_search, uniform_cost_search]:
                     execute(strategy, map, args)
 
 
@@ -118,6 +129,8 @@ if __name__ == '__main__':
     parser.add_argument('--dfs', help='Depth-first search', action='store_true')
     parser.add_argument('--hill', help='Hill search', action='store_true')
     parser.add_argument('--best', help='Greedy Best First Search search', action='store_true')
+    parser.add_argument('--bfgs', help='uniform_cost_search', action='store_true')
+    parser.add_argument('--greedy', help='Greedy', action='store_true')
     parser.add_argument('--all', help='All search strategies', action='store_true')
 
     parser.add_argument('--print', help='Put it if want to print result', action='store_true')

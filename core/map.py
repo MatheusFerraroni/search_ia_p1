@@ -227,3 +227,11 @@ class Map:
     def getDistance(self):
         v = distance.euclidean(self.pos, self.goal)
         return v
+
+    def getDistancePoints(self):
+        points = self.getPointsLeft()
+        if(len(points)==0):
+            v = distance.euclidean(self.pos, self.goal)
+        else:
+            v = distance.euclidean(self.pos, points[0])
+        return v
