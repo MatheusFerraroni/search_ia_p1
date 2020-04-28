@@ -89,7 +89,7 @@ class Map:
                     c = "$"
 
                 for p in self.getPointsLeft():
-                    if i==p[0] and j==p[1]:
+                    if j==p[0] and i==p[1]:
                         c = "P"
 
                 if i==self.pos[1] and j==self.pos[0]:
@@ -234,8 +234,13 @@ class Map:
 
     def getDistancePoints(self):
         points = self.getPointsLeft()
+        print(points)
         if(len(points)==0):
             v = distance.euclidean(self.pos, self.goal)
         else:
-            v = distance.euclidean(self.pos, points[0])
+            suma = 0
+            for ip in points:
+                v = distance.euclidean(self.pos, ip)
+                suma = suma + v 
+            v = suma
         return v

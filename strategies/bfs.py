@@ -18,3 +18,6 @@ def BreadthFirst(problem):
         frontier.extend(node.expand(problem))
 
     return None
+
+
+    

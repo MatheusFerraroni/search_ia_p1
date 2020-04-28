@@ -34,12 +34,11 @@ def best_first_graph_search(problem, f, display=False):
     return None
 
 
-def uniform_cost_search(problem, display=False):
-    """[Figure 3.14]"""
+def AstarTwo(problem, display=False):
     h = None
     h = memoize(h or problem.h2, 'h')
     return best_first_graph_search(problem, lambda n: n.path_cost + h(n), display)
-    #return best_first_graph_search(problem, lambda node: node.path_cost, display)
+   
 
 
 

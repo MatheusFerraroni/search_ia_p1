@@ -31,7 +31,7 @@ class Problem(search.Problem):
     def value(self, state):
         return state.getDistance()
 
-    def h(self, node):
+    def h1(self, node):
         return node.state.getDistance()
 
     def h2(self, node):
