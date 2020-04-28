@@ -18,10 +18,15 @@ class Map:
         self.pos = None
         self.points_pos = []
         self.points = 0
+        self.cost_till_here = 0
 
         if map_text!=None:
             self.validateMap(map_text)
 
+
+
+    def __lt__(self, other):
+        return self.cost_till_here < other.cost_till_here
 
 
     def validateMap(self, m):
@@ -214,6 +219,8 @@ class Map:
     def sim(self, action): # return a Mapa object with the action applied
         ret = self.copy()
         ret.act(action)
+
+        ret.cost_till_here = self.cost_till_here+1
 
         return ret
 
