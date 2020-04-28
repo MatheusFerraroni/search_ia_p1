@@ -88,6 +88,10 @@ class Map:
                 elif self.map[i][j]==4:
                     c = "$"
 
+                for p in self.getPointsLeft():
+                    if i==p[0] and j==p[1]:
+                        c = "P"
+
                 if i==self.pos[1] and j==self.pos[0]:
                     if self.pos!=self.start:
                         c = "X"
