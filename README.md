@@ -8,7 +8,7 @@
 * Aissa Hadj - 265189
 * Lucas Zanco Ladeira - 188951
 * Matheus Ferraroni - 212142
-* Maria Vitória
+* Maria Vitória Rodrigues Oliveira - 262884
 * Oscar Ciceri - 164786
 
 ## File Tree
