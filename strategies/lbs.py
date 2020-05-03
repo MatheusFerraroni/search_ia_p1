@@ -1,6 +1,9 @@
 from core.work import Problem, Node
+import random
 
-def k_states_local_beam_search(problem, k):
+k_width = 3
+
+def k_states_local_beam_search(problem):
     """
     From the initial node, Select randomly k states,
     From all the successors, select the k neighbors with highest value,
@@ -8,32 +11,52 @@ def k_states_local_beam_search(problem, k):
     Else repeat process
     """
     current = Node(problem.initial)
-    k_successors = random.choices(current.expand(problem), k=k)
+    
+    if k_width >= len(current.expand(problem)):
+      k_successors = current.expand(problem)
+    else:
+      k_successors = random.sample(current.expand(problem), k=k_width)
+
     #check if there are successors to the k successors selected
     if not k_successors:
-        break
+        return
+    
     explored = set()
-    
-    while True:
-        all_successors = []
-        #Generate the successors of all the k best states
-        for successor in k_successors:
-          children = successor.expand(problem)
-          for child in children:
-            if child not in explored and child not in all_successors:
-              all_successors.add(child)
-        #if there is no successor, we stop
-        if not all_successors:
-            break
-        #check if any successor is a goal
-        for successor in all_successors:
-          if problem.goal_test(successor.state):
-              break
-        #Select the k best successors
-        all_successors.sort(key=lambda node: problem.value(node.state), reverse=True)
-        k_successors = all_successors[:k]
-        #Mark the k successors as explored, to avoid exploring same nodes
-        for successor in k_successors:
-          explored.add(successor.state)
-    
-    return explored
+    explored_positions = []
+    goal_found = False
+
+    explored_positions.append(current.state.pos)
+    for successor in k_successors:
+      explored_positions.append(successor.state.pos)
+
+    while goal_found == False:  
+      all_successors = []
+      possible_positions = []
+
+      #Generate the successors of all the k best states
+      for successor in k_successors:
+        children = successor.expand(problem)
+        for child in children:
+          if child.state not in explored and child.state.pos not in possible_positions and child.state.pos not in explored_positions and child not in all_successors:
+            all_successors.append(child)
+            possible_positions.append(child.state.pos)
+      
+      #if there is no successor, we stop
+      if not all_successors:
+        break
+      
+      #check if any successor is a goal
+      for successor in all_successors:
+        if problem.goal_test(successor.state):
+          goal_found = True
+      
+      #Select the k best successors
+      all_successors.sort(key=lambda node: problem.value(node.state), reverse=False)
+      k_successors = all_successors[:k_width]
+      
+      #Mark the k successors as explored, to avoid exploring same nodes
+      for successor in k_successors:
+        explored.add(successor.state)
+        explored_positions.append(successor.state.pos)
+
+    return None
