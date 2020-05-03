@@ -55,6 +55,7 @@ def execute(strategy, map_text, args):
 
     print("Executando {0}".format(strategy.__name__))
     ini = time.time()
+    res = strategy(problem)
 
     tempo = time.time()-ini
     print("Executando {0} OK".format(strategy.__name__))
@@ -132,7 +133,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Execution parameters')
     parser.add_argument('--times', metavar='t', type=int, nargs=1, default=[1], action='store', help='Quantity of times executed')
-    parser.add_argument('--maps', metavar='c', type=str, nargs='*', default=['/content/search_ia_p1/maps/map7.txt'], action='store', help='File path')
+    parser.add_argument('--maps', metavar='c', type=str, nargs='*', default=['./maps/map1.txt'], action='store', help='File path')
 
     ####################################
     # ADD STRATEGY FLAG HERE
