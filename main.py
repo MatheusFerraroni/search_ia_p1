@@ -11,7 +11,7 @@ from strategies.best import recursive_best_first_search
 from strategies.ucs import UniformCost
 from strategies.aos import AstarOne
 from strategies.ats import AstarTwo
-
+from strategies.lbs import k_states_local_beam_search
 
 
 
@@ -115,7 +115,10 @@ def main(args):
 
             if args.ats:
                 execute(AstarTwo, map, args)
-
+            
+            if args.lbs:
+                execute(k_states_local_beam_search, map, args)
+                
             if args.all:
                 for strategy in [BreadthFirst, DepthFirst, hill_climbing, recursive_best_first_search, UniformCost, AstarOne, AstarTwo]:
                     execute(strategy, map, args)
@@ -137,6 +140,7 @@ if __name__ == '__main__':
     parser.add_argument('--ucs', help='Uniform-Cost search', action='store_true')
     parser.add_argument('--aos', help='Astar-one search', action='store_true')
     parser.add_argument('--ats', help='Astar-two search', action='store_true')
+    parser.add_argument('--lbs', help='Local-Beam search', action='store_true')
     parser.add_argument('--all', help='All search strategies', action='store_true')
 
     parser.add_argument('--print', help='Put it if want to print result', action='store_true')
