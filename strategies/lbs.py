@@ -19,7 +19,7 @@ def k_states_local_beam_search(problem):
 
     #check if there are successors to the k successors selected
     if not k_successors:
-        return
+        return None
     
     explored = set()
     explored_positions = []
@@ -49,6 +49,7 @@ def k_states_local_beam_search(problem):
       for successor in all_successors:
         if problem.goal_test(successor.state):
           goal_found = True
+          return successor
       
       #Select the k best successors
       all_successors.sort(key=lambda node: problem.value(node.state), reverse=False)
@@ -60,3 +61,5 @@ def k_states_local_beam_search(problem):
         explored_positions.append(successor.state.pos)
 
     return None
+      
+   
