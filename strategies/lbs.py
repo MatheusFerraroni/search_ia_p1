@@ -52,7 +52,7 @@ def k_states_local_beam_search(problem):
           return successor
       
       #Select the k best successors
-      all_successors.sort(key=lambda node: problem.value(node.state), reverse=False)
+      all_successors.sort(key=lambda node: node.state.getPoints(), reverse=False)
       k_successors = all_successors[:k_width]
       
       #Mark the k successors as explored, to avoid exploring same nodes
