@@ -232,15 +232,38 @@ class Map:
         v = distance.euclidean(self.pos, self.goal)
         return v
 
+    # def getDistancePoints(self):
+    #     points = self.getPointsLeft()
+    #     #print(points)
+    #     if(len(points)==0):
+    #         v = distance.euclidean(self.pos, self.goal)
+    #     else:
+    #         suma = 0
+    #         for ip in points:
+    #             v = distance.euclidean(self.pos, ip)
+    #             suma = suma + v 
+    #         v = suma
+    #     return v
+
     def getDistancePoints(self):
         points = self.getPointsLeft()
-        print(points)
+        # print(points)
+        dis_Pos_Goal = distance.euclidean(self.pos, self.goal)
+        dis_Pos_Point = 0
+        dis_Point_Goal = 0
+        valeu = dis_Pos_Goal
+
         if(len(points)==0):
-            v = distance.euclidean(self.pos, self.goal)
+            v =  dis_Pos_Goal
         else:
             suma = 0
+            dis_Pos_Point = distance.euclidean(self.pos, self.goal)
+            dis_Point_Goal = 0
             for ip in points:
-                v = distance.euclidean(self.pos, ip)
-                suma = suma + v 
-            v = suma
-        return v
+                if distance.euclidean(self.pos, ip) < dis_Pos_Point:
+                    dis_Pos_Point = distance.euclidean(self.pos, ip)
+                    dis_Point_Goal = distance.euclidean(ip, self.goal)
+            v = dis_Pos_Point + dis_Point_Goal
+                    
+            valeu = dis_Pos_Goal + dis_Pos_Goal*(1-dis_Pos_Goal/v)
+        return valeu
