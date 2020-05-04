@@ -1,9 +1,14 @@
 from core.work import Problem, Node
 import random
 
-k_width = 30
+map_array = [ ["map1", 2], ["map2", 3], ["map3", 2], ["map4", 2], ["map5", 1], ["map6", 4],["map7", 26], ["map8", 9], ["map9", 3], ["map10", 2], ["map11", 2], ["map12", 1], ["map13", 3], ["map14", 2], ["map15", 1]]
 
-def k_states_local_beam_search(problem):
+def return_k_value_for(index):
+  if index < len(map_array):
+    return map_array[index][1]
+  return 0
+
+def local_beam_search(problem, k_width):
     """
     From the initial node, Select randomly k states,
     From all the successors, select the k neighbors with highest value,
@@ -11,7 +16,7 @@ def k_states_local_beam_search(problem):
     Else repeat process
     """
     current = Node(problem.initial)
-    
+
     if k_width >= len(current.expand(problem)):
       k_successors = current.expand(problem)
     else:
@@ -43,6 +48,7 @@ def k_states_local_beam_search(problem):
       for successor in all_successors:
         if problem.goal_test(successor.state):
           goal_found = True
+          print("Solution found for width =", k_width)
           return successor
       
       #Select the k best successors
@@ -54,3 +60,15 @@ def k_states_local_beam_search(problem):
         explored.add(successor.state)
 
     return None
+      
+def k_states_local_beam_search(problem, k=1):
+  k_max = 100
+  result = None
+  while result == None:
+    result = local_beam_search(problem, k)
+    k = k + 1
+    if k > k_max:
+      break
+  
+  return result
+   
