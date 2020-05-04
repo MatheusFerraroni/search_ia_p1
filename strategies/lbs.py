@@ -59,17 +59,17 @@ def local_beam_search(problem, k_width):
       for successor in k_successors:
         explored.add(successor.state)
 
-    return -1
+    return None
 
 def k_states_local_beam_search(problem, map_name=None):
   k = 1
-  if map_name:
-    k = return_k_value_for(map_name)
-  k_max = 100
+  #if map_name:
+    #k = return_k_value_for(map_name)
+  k_max = 1000
   result = None
   while result == None:
     result = local_beam_search(problem, k)
-    k = k + 1
+    k = k + 5
     if k > k_max:
       break
 
