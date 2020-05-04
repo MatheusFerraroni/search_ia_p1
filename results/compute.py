@@ -23,13 +23,27 @@ def main(fi):
     infos = infos.split("\n")
     nodes = []
     times = []
+    pont = []
+    left = []
 
+    j=0
     for i in range(len(infos)-1):
-
-        if i%2==1:
-            nodes.append(int(infos[i]))
-        else:
+        # if i%2==1:
+        #     nodes.append(int(infos[i]))
+        # else:
+        #     times.append(float(infos[i]))
+        # print("i = ", i, "Infos[i] =", infos[i])
+        j=j+1
+        if j == 1 :
             times.append(float(infos[i]))
+        elif j == 2 :
+            nodes.append(int(infos[i]))
+        elif j == 3 :
+            pont.append(float(infos[i]))
+        else :
+            left.append(float(infos[i]))
+            j=0
+            
 
     new = {
         "times":{
@@ -47,7 +61,24 @@ def main(fi):
             "min" : float(np.min(nodes)),
             "confidence" : mean_confidence_interval(nodes),
             "values": nodes
+        },
+        "pont":{
+            "max" : float(np.max(pont)),
+            "mean" : float(np.mean(pont)),
+            "median" : float(np.median(pont)),
+            "min" : float(np.min(pont)),
+            "confidence" : mean_confidence_interval(pont),
+            "values": pont
+        },
+        "left":{
+            "max" : float(np.max(left)),
+            "mean" : float(np.mean(left)),
+            "median" : float(np.median(left)),
+            "min" : float(np.min(left)),
+            "confidence" : mean_confidence_interval(left),
+            "values": left
         }
+
     }
 
     f = open(fi,"w")
