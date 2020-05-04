@@ -1,7 +1,7 @@
 from core.work import Problem, Node
 import random
 
-k_width = 3
+k_width = 30
 
 def k_states_local_beam_search(problem):
     """
@@ -22,27 +22,21 @@ def k_states_local_beam_search(problem):
         return None
     
     explored = set()
-    explored_positions = []
     goal_found = False
-
-    explored_positions.append(current.state.pos)
-    for successor in k_successors:
-      explored_positions.append(successor.state.pos)
 
     while goal_found == False:  
       all_successors = []
-      possible_positions = []
 
       #Generate the successors of all the k best states
       for successor in k_successors:
         children = successor.expand(problem)
         for child in children:
-          if child.state not in explored and child.state.pos not in possible_positions and child.state.pos not in explored_positions and child not in all_successors:
+          if child.state not in explored and child not in all_successors:
             all_successors.append(child)
-            possible_positions.append(child.state.pos)
       
       #if there is no successor, we stop
       if not all_successors:
+        print("No solution found with width =", k_width)
         break
       
       #check if any successor is a goal
@@ -58,8 +52,5 @@ def k_states_local_beam_search(problem):
       #Mark the k successors as explored, to avoid exploring same nodes
       for successor in k_successors:
         explored.add(successor.state)
-        explored_positions.append(successor.state.pos)
 
     return None
-      
-   
