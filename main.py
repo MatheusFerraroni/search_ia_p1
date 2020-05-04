@@ -12,7 +12,7 @@ from strategies.ucs import UniformCost
 from strategies.aos import AstarOne
 from strategies.ats import AstarTwo
 from strategies.lbs import k_states_local_beam_search
-
+from pathlib import Path
 
 
 
@@ -55,8 +55,16 @@ def execute(strategy, map_text, args):
 
     print("Executando {0}".format(strategy.__name__))
     ini = time.time()
-    res = strategy(problem)
 
+    #res = strategy(problem)
+    res = None
+
+    if strategy == k_states_local_beam_search:
+      map_name = Path(args.maps[0]).stem
+      res = strategy(problem, map_name)
+    else:
+      res = strategy(problem)
+      
     tempo = time.time()-ini
     print("Executando {0} OK".format(strategy.__name__))
     print("Time: {0}".format(str(tempo)))
@@ -115,10 +123,10 @@ def main(args):
 
             if args.ats:
                 execute(AstarTwo, map, args)
-            
+
             if args.lbs:
                 execute(k_states_local_beam_search, map, args)
-                
+
             if args.all:
                 for strategy in [BreadthFirst, DepthFirst, hill_climbing, recursive_best_first_search, UniformCost, AstarOne, AstarTwo]:
                     execute(strategy, map, args)
