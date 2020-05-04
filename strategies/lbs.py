@@ -1,12 +1,12 @@
 from core.work import Problem, Node
 import random
 
-map_array = [ ["map1", 2], ["map2", 3], ["map3", 2], ["map4", 2], ["map5", 1], ["map6", 4],["map7", 26], ["map8", 9], ["map9", 3], ["map10", 2], ["map11", 2], ["map12", 1], ["map13", 3], ["map14", 2], ["map15", 1]]
+map_dictionnary = { "map1": 2, "map2": 3, "map3": 2, "map4": 2, "map5": 1, "map6": 4,"map7": 26, "map8": 9, "map9": 3, "map10": 2, "map11": 2, "map12": 1, "map13": 3, "map14": 2, "map15": 1}
 
-def return_k_value_for(index):
-  if index < len(map_array):
-    return map_array[index][1]
-  return 0
+def return_k_value_for(map_name):
+  if map_name in map_dictionnary: 
+    return map_dictionnary[map_name]
+  return 1
 
 def local_beam_search(problem, k_width):
     """
@@ -61,7 +61,10 @@ def local_beam_search(problem, k_width):
 
     return None
       
-def k_states_local_beam_search(problem, k=1):
+def k_states_local_beam_search(problem, map_name=None):
+  k = 1
+  if map_name:
+    k = return_k_value_for(map_name)
   k_max = 100
   result = None
   while result == None:
