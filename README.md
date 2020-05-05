@@ -50,6 +50,6 @@ https://colab.research.google.com/github/lucaslzl/search_ia_p1/blob/master/Pac_m
 
 how do we define an optimal solution?
 
-compare the methods on their own metrics
-compare the methods based on game conditions (countdown or bonus points more important)
-compare the methods based on the device specificities (limited battery life or limited memory)
+1. compare the methods on their own metrics
+2. compare the methods based on game conditions (countdown or bonus points more important)
+3. compare the methods based on the device specificities (limited battery life or limited memory)
