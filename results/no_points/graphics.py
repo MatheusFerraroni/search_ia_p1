@@ -1,15 +1,16 @@
 import matplotlib.pyplot as plt
+import matplotlib.markers as plm
 import numpy as np
 import json
 
-algoritmos = ["bfs", "dfs", "aos", "ats", "lbs"]
-cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
-metricas = ["times", "nodes", "pont", "left"]
+algoritmos = ["lbs", "dfs", "bfs", "aos", "ats"]
+cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+metricas = ["times", "nodes", "acti"]
 
 for im in metricas:									
 
-	tempo_maximo = 0
-	tempo_max = 0
+	maximo = 0
+	maxi = 0	
 
 	x1 = []
 	x2 = []
@@ -39,19 +40,19 @@ for im in metricas:
 		for ix in cenarios:				
 
 			name = iy + "_map" + ix		
-			#print(name)		
+			print(name)		
 			f = open(name + ".out", "r")
 			dados = json.loads(f.read())
 			f.close()
 
-			part = dados.get(im)			
+			part = dados.get(im)
 
 			media = part.get("median")				
 
-			tempo_max = part.get("max")				
+			maxi = part.get("max")				
 
-			if tempo_max > tempo_maximo:
-				tempo_maximo = tempo_max
+			if maxi > maximo:
+				maximo = maxi			
 
 			confianca = part.get("confidence")
 			
@@ -76,18 +77,19 @@ for im in metricas:
 			y5_std=y_std
 			
 	fig = plt.figure(2)
-	plt.xlim(0.8, 15.2) #FOR PLR
-	limitesup = tempo_maximo + tempo_maximo * 0.05
-	limiteinf = -1 * tempo_maximo * 0.05
-	plt.ylim(limiteinf, limitesup) #FOR PLR									
-	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])	
+	plt.xlim(0.65, 12.45) #FOR PLR
+	limitesup = maximo + maximo * 0.05
+	limiteinf = -1 * maximo * 0.05
+	plt.ylim(limiteinf, limitesup) #FOR PLR	
+	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12])	
+	plt.xticks(index, rotation = "horizontal")	
 	#plt.yscale('log')                                                             
-	plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.90', zorder=0)    												
-	plt.errorbar(index,y1, ls="-.", label='BFS',    color='g', yerr=y1_std, zorder=3)			
-	plt.errorbar(index,y2, ls="-.", label='DFS',   color='b', yerr=y2_std, zorder=3)						
-	plt.errorbar(index,y3, ls="-.", label='A*1',    color='r', yerr=y3_std, zorder=3)			
-	plt.errorbar(index,y4, ls="-.", label='A*2',   color='black', yerr=y4_std, zorder=3)
-	plt.errorbar(index,y5, ls="-.", label='LBS',   color='y', yerr=y5_std, zorder=3)
+	plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.9', zorder=0)    												
+	plt.errorbar(index,y1, ls="solid", label='BFS', marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
+	plt.errorbar(index,y2, ls="dashdot", label='DFS', marker= plm.CARETLEFTBASE, color='b', yerr=y2_std, zorder=3)						
+	plt.errorbar(index,y3, ls="dotted", label='A*1', marker= plm.CARETUPBASE, color='r', yerr=y3_std, zorder=3)			
+	plt.errorbar(index,y4, ls="dashed", label='A*2', marker= plm.CARETRIGHTBASE, color='m', yerr=y4_std, zorder=3)
+	plt.errorbar(index,y5, ls="dotted", label='LBS', marker='o', color='c', yerr=y5_std, zorder=3)	
 			
 	if im == 'times':
 		rx = 'Time (s)'
@@ -98,6 +100,9 @@ for im in metricas:
 	elif im == 'pont':
 		rx = 'Number of Points'
 		metrica = 'Points'
+	elif im == 'acti':
+		rx = 'Action'
+		metrica = 'Actions'
 	else:
 		rx = 'Number of left points'
 		metrica = 'Left Points'
@@ -106,7 +111,7 @@ for im in metricas:
 	plt.ylabel(rx, fontweight="bold")	
 	plt.title(titlex, fontweight="bold")
 	plt.legend(numpoints=1,loc="upper left", ncol=1)
-	plt.xlabel('Scenarios', fontweight="bold") # mudar
+	plt.xlabel('Scenario', fontweight="bold") # mudar
 	#plt.show()
 	fig.savefig(nameFile+'.png', format='png', dpi=600, bbox_inches='tight')   # save the figure to file
 	plt.close(fig) 			
