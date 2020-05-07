@@ -4,7 +4,7 @@ import numpy as np
 import json
 
 algoritmos = ["lbs", "dfs", "bfs", "aos", "ats"]
-cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 metricas = ["times", "nodes", "pont", "left", "acti"]
 
 for im in metricas:									
@@ -41,7 +41,7 @@ for im in metricas:
 
 			name = iy + "_map" + ix		
 			print(name)		
-			f = open(name + ".out", "r")
+			f = open("../results/with_points/" + name + ".out", "r")
 			dados = json.loads(f.read())
 			f.close()
 
@@ -77,12 +77,12 @@ for im in metricas:
 			y5_std=y_std
 			
 	fig = plt.figure(2)
-	plt.xlim(0.65, 15.45) #FOR PLR
+	plt.xlim(0.65, 12.45) #FOR PLR
 	limitesup = maximo + maximo * 0.05
 	limiteinf = -1 * maximo * 0.05
 	plt.ylim(limiteinf, limitesup) #FOR PLR									
-	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])	
-	plt.xticks(index, rotation = "horizontal")
+	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12])
+	plt.xticks(index, rotation = "horizontal")	
 	#plt.yscale('log')                                                             
 	plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.90', zorder=0)    												
 	plt.errorbar(index,y1, ls="solid", label='BFS', marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
@@ -113,7 +113,7 @@ for im in metricas:
 	plt.legend(numpoints=1,loc="upper left", ncol=1)
 	plt.xlabel('Scenario', fontweight="bold") # mudar
 	#plt.show()
-	fig.savefig(nameFile+'.png', format='png', dpi=600, bbox_inches='tight')   # save the figure to file
+	fig.savefig('../plots/with_points/'+nameFile+'.png', format='png', dpi=600, bbox_inches='tight')   # save the figure to file
 	plt.close(fig) 			
 
 # Usar "-." ou ":" em vez da reta

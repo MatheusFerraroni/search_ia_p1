@@ -41,7 +41,7 @@ for im in metricas:
 
 			name = iy + "_map" + ix		
 			print(name)		
-			f = open(name + ".out", "r")
+			f = open("../results/no_points/" + name + ".out", "r")
 			dados = json.loads(f.read())
 			f.close()
 
@@ -113,7 +113,7 @@ for im in metricas:
 	plt.legend(numpoints=1,loc="upper left", ncol=1)
 	plt.xlabel('Scenario', fontweight="bold") # mudar
 	#plt.show()
-	fig.savefig(nameFile+'.png', format='png', dpi=600, bbox_inches='tight')   # save the figure to file
+	fig.savefig('../plots/no_points/'+nameFile+'.png', format='png', dpi=600, bbox_inches='tight')   # save the figure to file
 	plt.close(fig) 			
 
 # Usar "-." ou ":" em vez da reta
