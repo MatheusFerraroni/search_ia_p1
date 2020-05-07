@@ -20,6 +20,8 @@ class Map:
         self.points = 0
         self.cost_till_here = 0
 
+        self.hashed = None
+
         if map_text!=None:
             self.validateMap(map_text)
 
@@ -66,12 +68,12 @@ class Map:
                     self.points_pos.append([j,i])
                 else:
                     raise Exception("Invalid map char: "+c)
+
                 j += 1
             i += 1
 
         if self.start==None or self.goal==None:
             raise Exception("Start and Goal must be provided")
-
 
     def printVisual(self):
         for i in range(len(self.map)):
@@ -225,6 +227,7 @@ class Map:
         ret.act(action)
 
         ret.cost_till_here = self.cost_till_here+1
+        ret.hashed = None
 
         return ret
 
@@ -272,3 +275,16 @@ class Map:
                 
             valeu = dis_Pos_Goal + dis_Pos_Goal*(1-x)
         return valeu
+
+
+    def calculateHash(self):
+        self.hashed = "1"
+        for i in range(len(self.map)):
+            for j in range(len(self.map[i])):
+                self.hashed += str(self.map[i][j])
+        self.hashed = int(self.hashed)
+
+    def __hash__(self):
+        if self.hashed==None:
+            self.calculateHash()
+        return self.hashed
