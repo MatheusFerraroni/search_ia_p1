@@ -31,6 +31,13 @@ for im in metricas:
 	y4_std = []
 	y5_std = []
 
+	mean1 = 0
+	mean1 = 0
+	mean3 = 0
+	mean4 = 0 
+	mean5 = 0
+
+
 	for iy in algoritmos:					
 		
 		y = []
@@ -84,7 +91,14 @@ for im in metricas:
 		if iy is "lbs":								
 			y5=y
 			y5_std=y_std
-			
+
+	mean1= np.mean(y1)
+	mean2= np.mean(y2)
+	mean3= np.mean(y3)
+	mean4= np.mean(y4)
+	mean5= np.mean(y5)
+	
+		
 	fig = plt.figure(2)
 	plt.xlim(0.65, 12.45) #FOR PLR
 	limitesup = maximo + maximo * 0.05
@@ -93,12 +107,20 @@ for im in metricas:
 	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12])	
 	plt.xticks(index, rotation = "horizontal")	
 	#plt.yscale('log')                                                             
-	plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.9', zorder=0)    												
-	plt.errorbar(index,y1, ls="solid", label='BFS', marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
-	plt.errorbar(index,y2, ls="dashdot", label='DFS', marker= plm.CARETLEFTBASE, color='b', yerr=y2_std, zorder=3)						
-	plt.errorbar(index,y3, ls="dotted", label='A*1', marker= plm.CARETUPBASE, color='r', yerr=y3_std, zorder=3)			
-	plt.errorbar(index,y4, ls="dashed", label='A*2', marker= plm.CARETRIGHTBASE, color='m', yerr=y4_std, zorder=3)
-	plt.errorbar(index,y5, ls="dotted", label='LBS', marker='o', color='c', yerr=y5_std, zorder=3)	
+	# plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.9', zorder=0)    												
+	# plt.errorbar(index,y1, ls="solid", label='BFS', marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
+	# plt.errorbar(index,y2, ls="dashdot", label='DFS', marker= plm.CARETLEFTBASE, color='b', yerr=y2_std, zorder=3)						
+	# plt.errorbar(index,y3, ls="dotted", label='A*1', marker= plm.CARETUPBASE, color='r', yerr=y3_std, zorder=3)			
+	# plt.errorbar(index,y4, ls="dashed", label='A*2', marker= plm.CARETRIGHTBASE, color='m', yerr=y4_std, zorder=3)
+	# plt.errorbar(index,y5, ls="dotted", label='LBS', marker='o', color='c', yerr=y5_std, zorder=3)
+
+	plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.90', zorder=0)    												
+	plt.errorbar(index,y1, ls="solid", label='BFS, avg='+str("{:.1f}".format(mean1)), marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
+	plt.errorbar(index,y2, ls="dashdot", label='DFS, avg='+str("{:.1f}".format(mean2)), marker= plm.CARETLEFTBASE, color='b', yerr=y2_std, zorder=3)						
+	plt.errorbar(index,y3, ls="dotted", label='A*1, avg='+str("{:.1f}".format(mean3)), marker= plm.CARETUPBASE, color='r', yerr=y3_std, zorder=3)			
+	plt.errorbar(index,y4, ls="dashed", label='A*2, avg='+str("{:.1f}".format(mean4)), marker= plm.CARETRIGHTBASE, color='m', yerr=y4_std, zorder=3)
+	plt.errorbar(index,y5, ls="dotted", label='LBS, avg='+str("{:.1f}".format(mean5)), marker='o', color='c', yerr=y5_std, zorder=3)	
+		
 			
 	if im == 'times':
 		rx = 'Time (s)'
