@@ -25,6 +25,7 @@ def main(fi):
     times = []
     pont = []
     left = []
+    acti = []
 
     j=0
     for i in range(len(infos)-1):
@@ -40,8 +41,10 @@ def main(fi):
             nodes.append(int(infos[i]))
         elif j == 3 :
             pont.append(float(infos[i]))
-        else :
+        elif j == 4 :
             left.append(float(infos[i]))
+        else :
+            acti.append(float(infos[i]))
             j=0
             
 
@@ -77,6 +80,14 @@ def main(fi):
             "min" : float(np.min(left)),
             "confidence" : mean_confidence_interval(left),
             "values": left
+        },
+        "acti":{
+            "max" : float(np.max(acti)),
+            "mean" : float(np.mean(acti)),
+            "median" : float(np.median(acti)),
+            "min" : float(np.min(acti)),
+            "confidence" : mean_confidence_interval(acti),
+            "values": acti
         }
 
     }

@@ -39,7 +39,7 @@ def read_maps(args):
 
 def execute(strategy, map_text, args):
 
-    print("""Action Legend:
+    print("""A.ction Legend:
             1/E = LEFT
             2/D = RIGHT
             3/B = DOWN
@@ -72,7 +72,7 @@ def execute(strategy, map_text, args):
     print("Pont: {0}".format(str(res.state.getPoints())))
     print("Left: {0}".format(str(len(res.state.getPointsLeft()))))
     print("Acti: {0}".format(len(res.solution())))
-    print("Actions: ", res.solution())
+    print("A.ctions: ", res.solution())
 
     if args.print:
         print("""\nMap Legend:
