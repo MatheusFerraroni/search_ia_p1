@@ -6,6 +6,8 @@ from core.work import Problem, Node
 
 def BreadthFirst(problem):
 
+
+    checkeds = []
     frontier = deque([Node(problem.initial)])
 
     while frontier:
@@ -16,6 +18,7 @@ def BreadthFirst(problem):
             return node
 
         frontier.extend(node.expand(problem))
+
 
     return None
 
