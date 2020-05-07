@@ -62,7 +62,7 @@ def local_beam_search(problem, k_width):
     return None
 
 def k_states_local_beam_search(problem, map_name=None):
-  k = 1
+  k = 10
   #if map_name:
     #k = return_k_value_for(map_name)
   k_max = 1000
