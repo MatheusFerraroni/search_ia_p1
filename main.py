@@ -71,6 +71,7 @@ def execute(strategy, map_text, args):
     print("Node: {0}".format(str(problem.total_nodes)))
     print("Pont: {0}".format(str(res.state.getPoints())))
     print("Left: {0}".format(str(len(res.state.getPointsLeft()))))
+    print("Acti: {0}".format(len(res.solution())))
     print("Actions: ", res.solution())
 
     if args.print:
