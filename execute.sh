@@ -21,7 +21,7 @@
 
 ########################################## WITH POINTS ########################################################
 
-for value in hill dfs bfs aos ats lbs 
+for value in dfs bfs aos ats lbs hill
 do
 
  echo ${value}
@@ -44,7 +44,7 @@ done
 
 ######################################### NO POINTS ########################################################
 
-for value in lbs dfs bfs aos ats 
+for value in dfs bfs aos ats lbs hill
 do
 
   echo ${value}
