@@ -7,11 +7,11 @@
 #   do
 #   	echo $value " MAP1-Scenario = " $n
 
-#   	python main.py --$value --print --map="./maps/map$n.txt" | grep -e Time -e Node -e Pont -e Left -e Acti -e Nods -e Expa -e Exps | sed 's/^......//' > ./results/maps1/${value}_map$n.out
+#   	python main.py --$value --print --map="./maps/map$n.txt" | grep -e Time -e Node -e Pont -e Left -e Acti -e Expa | sed 's/^......//' > ./results/maps1/${value}_map$n.out
 #   	for ((i=0;i<10;i++))
 #   	do
 #   		echo "Seed = " $i
-#   		python main.py --$value --print --map="./maps/map$n.txt" | grep -e Time -e Node -e Pont -e Left -e Acti -e Nods -e Expa -e Exps | sed 's/^......//' >> ./results/maps1/${value}_map$n.out
+#   		python main.py --$value --print --map="./maps/map$n.txt" | grep -e Time -e Node -e Pont -e Left -e Acti -e Expa | sed 's/^......//' >> ./results/maps1/${value}_map$n.out
 #   	done
 #   	python ./results/compute.py --file="./results/maps1/${value}_map$n.out"
 
