@@ -11,6 +11,8 @@ class Problem(search.Problem):
         self.initial = initial
         self.goal = initial.goal
 
+        self.expanded = 0
+
     def actions(self, state):
         return state.getActions()
 
@@ -70,6 +72,7 @@ class Node(search.Node):
 
 
     def expand(self, problem):
+        problem.expanded += 1
         act1, act2 = problem.actions(self.state)
         problem.total_nodes += len(act1)
         """List the nodes reachable in one step from this node."""
