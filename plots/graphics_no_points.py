@@ -5,7 +5,8 @@ import json
 
 algoritmos = ["lbs", "dfs", "bfs", "aos", "ats"]
 cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
-metricas = ["times", "nodes", "acti"]
+metricas = ["times", "nodes", "acti", "nodes_per_sec"]
+
 
 for im in metricas:									
 
@@ -45,20 +46,28 @@ for im in metricas:
 			dados = json.loads(f.read())
 			f.close()
 
-			part = dados.get(im)
-
-			media = part.get("median")				
-
-			maxi = part.get("max")				
-
-			if maxi > maximo:
-				maximo = maxi			
-
-			confianca = part.get("confidence")
-			
-			y.append(float(media))
-			
-			y_std.append(float(confianca))			
+			if im is "nodes_per_sec":
+				part_time = dados.get('times')
+				media_time = part_time.get("median")
+				confianca_time = part_time.get("confidence")
+				part_nodes = dados.get('nodes')
+				media_nodes = part_nodes.get("median")
+				confianca_nodes = part_nodes.get("confidence")
+				y.append(float(media_nodes/media_time))
+				y_std.append(float(confianca_time))	
+				maxi = float(media_nodes/media_time)
+				if maxi > maximo:
+					maximo = maxi
+			else:
+				part = dados.get(im)
+				media = part.get("median")				
+				maxi = part.get("max")	
+				if maxi > maximo:
+					maximo = maxi	
+				confianca = part.get("confidence")
+				y.append(float(media))
+				y_std.append(float(confianca))			
+							
 				
 		if iy is "bfs":					
 			y1=y
@@ -103,9 +112,12 @@ for im in metricas:
 	elif im == 'acti':
 		rx = 'Action'
 		metrica = 'Actions'
-	else:
+	elif  im == 'left':
 		rx = 'Number of left points'
 		metrica = 'Left Points'
+	else:
+		rx = 'Number of Nodes per Second'
+		metrica = 'Nodes per Second'
 
 	titlex = "Metric: " + metrica	
 	plt.ylabel(rx, fontweight="bold")	
