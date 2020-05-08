@@ -1,5 +1,5 @@
 from scipy.spatial import distance
-
+import sys
 """
 
 #/0 = BLOCKED
@@ -19,12 +19,27 @@ class Map:
         self.points_pos = []
         self.points = 0
         self.cost_till_here = 0
-
         self.hashed = None
 
         if map_text!=None:
             self.validateMap(map_text)
 
+
+    def calculate_mean_actions(self):
+        pos_bkp = self.pos.copy()
+        valid_positions = 0
+        total_actions = 0
+        for i in range(len(self.map)):
+            for j in range(len(self.map[i])):
+
+                if self.map[i][j]!=0:
+                    valid_positions += 1
+                    self.pos = [j,i]
+                    total_actions += len(self.getActions()[0])
+
+        self.pos = pos_bkp.copy()
+
+        return float(total_actions)/valid_positions
 
 
     def __lt__(self, other):
