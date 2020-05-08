@@ -171,8 +171,8 @@ for im in metricas:
 
 	titlex = "Metric: " + metrica	
 	plt.ylabel(rx, fontweight="bold")	
-	plt.title(titlex, fontweight="bold")
-	plt.legend(numpoints=1,loc="upper left", ncol=1)
+	#plt.title(titlex, fontweight="bold")
+	plt.legend(numpoints=1, loc="upper left", ncol=3, bbox_to_anchor=(-0.02, 1.15))
 	plt.xlabel('Scenario', fontweight="bold") # mudar
 	#plt.show()
 	fig.savefig('../plots/with_points/'+nameFile+'.pdf', format='pdf', dpi=600, bbox_inches='tight')   # save the figure to file
