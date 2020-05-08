@@ -21,12 +21,12 @@
 
 ########################################## WITH POINTS ########################################################
 
-for value in  dfs # bfs aos ats lbs hill
+for value in  dfs bfs aos ats lbs hill
 do
 
  echo ${value}
 
- for ((n=1;n<4;n++))
+ for ((n=1;n<13;n++))
  do
    echo $value " MAP2-Scenario = " $n
 
@@ -44,23 +44,23 @@ done
 
 ######################################### NO POINTS ########################################################
 
-# for value in dfs bfs aos ats lbs hill
-# do
+for value in dfs bfs aos ats lbs hill
+do
 
-#   echo ${value}
+  echo ${value}
 
-#   for ((n=1;n<13;n++))
-#   do
-#     echo $value " MAP3-Scenario = " $n
+  for ((n=1;n<13;n++))
+  do
+    echo $value " MAP3-Scenario = " $n
 
-#     python main.py --$value --print --map="./maps2/no_points/map$n.txt" | grep -e Time -e Node  -e Pont -e Left -e Acti -e Expa | sed 's/^......//' > ./results/no_points/${value}_map$n.out
-#     for ((i=0;i<10;i++))
-#     do
-#       echo "Seed = " $i
-#       python main.py --$value --print --map="./maps2/no_points/map$n.txt" | grep -e Time -e Node   -e Pont -e Left -e Acti -e Expa | sed 's/^......//' >> ./results/no_points/${value}_map$n.out
-#     done
-#     python ./results/compute.py --file="./results/no_points/${value}_map$n.out"
+    python main.py --$value --print --map="./maps2/no_points/map$n.txt" | grep -e Time -e Node  -e Pont -e Left -e Acti -e Expa | sed 's/^......//' > ./results/no_points/${value}_map$n.out
+    for ((i=0;i<10;i++))
+    do
+      echo "Seed = " $i
+      python main.py --$value --print --map="./maps2/no_points/map$n.txt" | grep -e Time -e Node   -e Pont -e Left -e Acti -e Expa | sed 's/^......//' >> ./results/no_points/${value}_map$n.out
+    done
+    python ./results/compute.py --file="./results/no_points/${value}_map$n.out"
 
-#   done
+  done
 
-# done
+done

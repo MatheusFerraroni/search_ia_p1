@@ -5,7 +5,7 @@ import json
 
 algoritmos = ["lbs", "dfs", "bfs", "aos", "ats"]
 cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
-metricas = ["times", "nodes", "pont", "left", "acti", "nodes_per_sec"]
+metricas = ["times", "nodes", "pont", "left", "acti"] #, "nodes_per_sec"]
 
 for im in metricas:									
 

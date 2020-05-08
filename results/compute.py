@@ -30,7 +30,7 @@ def main(fi):
 
     j=0
     for i in range(len(infos)-1):
-        #print("i = ", i, "Infos[i] =", infos[i])
+        print("i = ", i, "Infos[i] =", infos[i])
         j=j+1
         if j == 1 :
             times.append(float(infos[i]))
