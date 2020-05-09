@@ -4,7 +4,8 @@ import numpy as np
 import json
 
 algoritmos = ["lbs", "dfs", "bfs", "aos", "ats", "hill"]
-cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+#cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+cenarios = ["1", "3", "5", "9", "6", "8", "2", "4", "10", "7", "12", "11"]
 metricas = ["times", "nodes", "acti", "nodes_per_sec", "expa", "expanded_per_sec"]
 
 
@@ -125,7 +126,9 @@ for im in metricas:
 	limiteinf = -1 * maximo * 0.05
 	#plt.ylim(limiteinf, limitesup) #FOR PLR	
 	index = np.array([1,2,3,4,5,6,7,8,9,10,11,12])	
-	plt.xticks(index, rotation = "horizontal")		
+	x_label = ['1', '3', '5', '9', '6', '8', '2', '4', '10', '7', '12', '11']
+	plt.xticks(index, x_label, rotation = "horizontal")
+	#plt.xticks(index, rotation = "horizontal")		
 	plt.yscale('log')                                                             
 	# plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.9', zorder=0)    												
 	# plt.errorbar(index,y1, ls="solid", label='BFS', marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
