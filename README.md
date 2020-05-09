@@ -41,11 +41,6 @@ For instance, "python main.py --bfs --maps=./maps/map1.txt,./maps/map2.txt" will
 To see the state after aplying each action add the tag "--print"
 
 
-## Open Jupyter Notebook on Google Colab
-
-https://colab.research.google.com/github/lucaslzl/search_ia_p1/blob/master/Pac_man_Project.ipynb
-
-
 ## Points to discuss in the Report
 
 how do we define an optimal solution?
