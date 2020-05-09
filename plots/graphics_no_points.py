@@ -134,8 +134,11 @@ for iv in vistaMap:
 
 		if im is "acti":
 			plt.ylim(limiteinf, limitesup)
+		elif im is "pont":
+			plt.ylim(limiteinf, limitesup)
 		else:
 			plt.yscale('log')
+
 
 
 		if iv is "all":

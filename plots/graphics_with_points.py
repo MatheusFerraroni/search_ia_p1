@@ -136,6 +136,8 @@ for iv in vistaMap:
 
 		if im is "acti":
 			plt.ylim(limiteinf, limitesup)
+		elif im is "pont":
+			plt.ylim(limiteinf, limitesup)
 		else:
 			plt.yscale('log')
 
@@ -157,7 +159,7 @@ for iv in vistaMap:
 			index = np.array([1,2,3,4])
 			x_label  = ['4', '10', '11', '12']
 			plt.xticks(index, x_label, rotation = "horizontal")
-			
+
 
 		plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.90', zorder=0)    												
 		plt.errorbar(index,y1, ls="solid", label='BFS, avg='+str("{:.1f}".format(mean1)), marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
