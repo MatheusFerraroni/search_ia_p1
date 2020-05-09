@@ -40,11 +40,3 @@ For instance, "python main.py --bfs --maps=./maps/map1.txt,./maps/map2.txt" will
 
 To see the state after aplying each action add the tag "--print"
 
-
-## Points to discuss in the Report
-
-how do we define an optimal solution?
-
-1. compare the methods on their own metrics
-2. compare the methods based on game conditions (countdown or bonus points more important)
-3. compare the methods based on the device specificities (limited battery life or limited memory)
