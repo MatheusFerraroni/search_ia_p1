@@ -12,7 +12,7 @@ for iv in vistaMap:
 	if iv is "all":
 		cenarios = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 	if iv is "dense":
-		cenarios = ["1", "3", "2", "9", "5", "7"]
+		cenarios = ["1", "3", "2", "5", "7"]
 	if iv is "nodense":
 		cenarios = ["4", "10", "11", "12"]
 
@@ -149,9 +149,9 @@ for iv in vistaMap:
 
 		
 		if iv is "dense":
-			plt.xlim(0.65, 6.45) 
-			index = np.array([1,2,3,4,5,6])	
-			x_label  = ['1', '3', '2', '9', '5', '7']
+			plt.xlim(0.65, 5.45) 
+			index = np.array([1,2,3,4,5])	
+			x_label  = ['1', '3', '2', '5', '7']
 			plt.xticks(index, x_label, rotation = "horizontal")
 		
 		if iv is "nodense":
