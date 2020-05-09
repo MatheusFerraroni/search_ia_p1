@@ -2,12 +2,12 @@ clear
 sleep 2
 start=`date +%s`
 
-echo "  _______                  _               _   _                 __ "
-echo " |__   __|                | |             | | | |               /_ |"
-echo "    | |     ____    ____  | |__     ____  | | | |__     ___      | |"
-echo "    | |    |  __|  / _  | |  _ \   / _  | | | |  _ \   / _ \     | |"
-echo "    | |    | |    | (_| | | |_) | | (_| | | | | | | | | (_) |    | |"
-echo "    |_|    |_|     \__,_| |_.__/   \__,_| |_| |_| |_|  \___/     |_|"
+echo "   ____                     _                 _       _ "
+echo "  |  _ \   ____    ___     (_)   ___    ___  | |_    / |"
+echo "  | |_) | |  __|  / _ \    | |  / _ \  / __| | __|   | |"
+echo "  |  __/  | |    | (_) |   | | |  __/ | (__  | |_    | |"
+echo "  |_|     |_|     \___/   _/ |  \___|  \___|  \__|   |_|"
+echo "                         |__/                           "
 echo ""
 echo ""
 echo "Aissa Hadj - 265189"
@@ -15,7 +15,7 @@ echo "Lucas Zanco Ladeira - 188951"
 echo "Matheus Ferraroni - 212142"
 echo "Maria Vitória Rodrigues Oliveira - 262884"
 echo "Oscar Ciceri - 164786"
-sleep 5
+sleep 100
 
 
 
@@ -51,12 +51,15 @@ run_mapa()
 }
 
 
-for m in bfs dfs hill best ucs aos ats lbs
+for m in bfs dfs hill best aos ats lbs
 do
-  for i in 1 2 3 4
+  for i in 1 2 3 4 5 6 7 8 9
   do
     clear
-    echo "Strategy $m/[bfs dfs hill best ucs aos ats lbs]"
+    echo "Strategy $m/[bfs dfs hill best aos ats lbs]"
+    run_mapa "./maps2/no_points/map$i.txt" $m
+    clear
+    echo "Strategy $m/[bfs dfs hill best aos ats lbs]"
     run_mapa "./maps2/with_points/map$i.txt" $m
   done
 done

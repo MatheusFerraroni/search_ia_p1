@@ -39,11 +39,11 @@ def read_maps(args):
 
 def execute(strategy, map_text, args):
 
-    print("""A.ction Legend:
-            1/E = LEFT
-            2/D = RIGHT
-            3/B = DOWN
-            4/C = UP\n\n""")
+    # print("""A.ction Legend:
+    #         1/E = LEFT
+    #         2/D = RIGHT
+    #         3/B = DOWN
+    #         4/C = UP\n\n""")
 
     print("Criando mapa")
     initial_state = Map(map_text)
