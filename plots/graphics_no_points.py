@@ -198,7 +198,18 @@ for iv in vistaMap:
 		plt.ylabel(rx, fontweight="bold")	
 		#plt.title(titlex, fontweight="bold")
 		plt.legend(numpoints=1, loc="upper left", ncol=3, bbox_to_anchor=(-0.02, 1.15))
-		plt.xlabel('Scenario', fontweight="bold") # mudar
+	
+
+		if iv is "all":
+			plt.xlabel('Scenario', fontweight="bold") # mudar
+
+		if iv is "dense":
+			plt.xlabel('Dense Scenario', fontweight="bold") # mudar
+
+		if iv is "nodense":
+			plt.xlabel('Non-dense Scenario', fontweight="bold") # mudar
+
+
 		#plt.show()
 		fig.savefig('../plots/no_points/'+nameFile+'.png', bbox_inches='tight')
 		#fig.savefig('../plots/no_points/'+nameFile+'.pdf', format='pdf', dpi=600, bbox_inches='tight')   # save the figure to file
