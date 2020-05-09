@@ -53,7 +53,7 @@ run_mapa()
 
 for m in bfs dfs hill best ucs aos ats lbs
 do
-  for i in 1 2 3 4
+  for i in 1 
   do
     clear
     echo "Strategy $m/[bfs dfs hill best ucs aos ats lbs]"
