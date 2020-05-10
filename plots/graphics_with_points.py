@@ -138,6 +138,8 @@ for iv in vistaMap:
 			plt.ylim(limiteinf, limitesup)
 		elif im is "pont":
 			plt.ylim(limiteinf, limitesup)
+		elif im is "left":
+			plt.ylim(limiteinf, limitesup)
 		else:
 			plt.yscale('log')
 
@@ -161,7 +163,7 @@ for iv in vistaMap:
 			plt.xticks(index, x_label, rotation = "horizontal")
 
 
-		plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.90', zorder=0)    												
+		plt.grid(True, which="both", ls="-", linewidth=0.1, color='0.10', zorder=0)    												
 		plt.errorbar(index,y1, ls="solid", label='BFS, avg='+str("{:.1f}".format(mean1)), marker= plm.CARETDOWNBASE, color='g', yerr=y1_std, zorder=3)			
 		plt.errorbar(index,y2, ls="dashdot", label='DFS, avg='+str("{:.1f}".format(mean2)), marker= plm.CARETLEFTBASE, color='b', yerr=y2_std, zorder=3)						
 		plt.errorbar(index,y3, ls="dotted", label='A*1, avg='+str("{:.1f}".format(mean3)), marker= plm.CARETUPBASE, color='r', yerr=y3_std, zorder=3)			
@@ -199,9 +201,17 @@ for iv in vistaMap:
 		plt.ylabel(rx, fontweight="bold")	
 		#plt.title(titlex, fontweight="bold")
 		plt.legend(numpoints=1, loc="upper left", ncol=3, bbox_to_anchor=(-0.02, 1.15))
-		plt.xlabel('Scenario', fontweight="bold") # mudar
-		#plt.show()
-		fig.savefig('../plots/with_points/'+nameFile+'.pdf', format='pdf', dpi=600, bbox_inches='tight')   # save the figure to file
+		if iv is "all":
+			plt.xlabel('Scenario', fontweight="bold") # mudar
+
+		if iv is "dense":
+			plt.xlabel('Dense Scenario', fontweight="bold") # mudar
+
+		if iv is "nodense":
+			plt.xlabel('Non-dense Scenario', fontweight="bold") # mudar
+
+		fig.savefig('../plots/with_points/'+nameFile+'.png', bbox_inches='tight')
+		#fig.savefig('../plots/with_points/'+nameFile+'.pdf', format='pdf', dpi=600, bbox_inches='tight')   # save the figure to file
 		plt.close(fig) 			
 
 	# Usar "-." ou ":" em vez da reta
