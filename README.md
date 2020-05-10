@@ -13,6 +13,7 @@
 
 ## File Tree
 
+* [Report](https://github.com/lucaslzl/search_ia_p1/blob/master/Final_Report.ipynb) - Final Report.
 * [Core](https://github.com/lucaslzl/search_ia_p1/tree/master/core) - Main classes.
 * [Maps](https://github.com/lucaslzl/search_ia_p1/tree/master/maps) - Maps to be utilized as input.
 * [Strategies](https://github.com/lucaslzl/search_ia_p1/tree/master/strategies) - Search strategies implemented.
